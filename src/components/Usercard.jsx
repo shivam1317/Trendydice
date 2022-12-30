@@ -18,7 +18,6 @@ const Usercard = ({ user, idx }) => {
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [favorite, setFavorite] = useState(false);
-  const users = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
     name: user.name,
@@ -49,7 +48,6 @@ const Usercard = ({ user, idx }) => {
     let { name, email, phone, website } = userInfo;
     if (name && email && phone && website) {
       dispatch(updateUser(userInfo));
-      localStorage.setItem("users", JSON.stringify(users));
       setIsModalOpen(false);
     } else {
       warning();
@@ -63,7 +61,6 @@ const Usercard = ({ user, idx }) => {
   };
   const handleOk1 = () => {
     dispatch(deleteUser(idx));
-    localStorage.setItem("users", JSON.stringify(users));
     setIsModalOpen1(false);
   };
   const handleCancel1 = () => {

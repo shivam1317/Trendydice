@@ -8,6 +8,7 @@ const userSlice = createSlice({
   reducers: {
     deleteUser: (state, { payload }) => {
       state.userInfo.splice(payload, 1);
+      localStorage.setItem("users", JSON.stringify(state.userInfo));
     },
     setUsers: (state, { payload }) => {
       state.userInfo = payload;
@@ -22,6 +23,7 @@ const userSlice = createSlice({
           user.website = website;
         }
       });
+      localStorage.setItem("users", JSON.stringify(state.userInfo));
     },
   },
 });
